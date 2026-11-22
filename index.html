@@ -3,29 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
 <title>AI Anonymous</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<style>body { font-family: 'Roboto', sans-serif; }</style>
+<link rel="preload" href="fonts/roboto-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/roboto-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Roboto"; src: url("fonts/roboto-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/roboto-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+
+:root { --paper: #FBFBF9; --ink: #1E1E1B; --quiet: #8A8C84; --link: #1D4E89; --link-hover: #123A66; }
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #161715; --ink: #E9EAE5; --quiet: #777A73; --link: #A9C8F0; --link-hover: #CADDF6; }
+}
+
+/* Type grows a little on large screens so the block does not get lost */
+html { font-size: clamp(100%, 0.85rem + 0.4vw, 137.5%); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* One block, placed slightly above the middle of the screen */
+body {
+  margin: 0; min-height: 100vh; min-height: 100dvh; box-sizing: border-box;
+  padding: 2rem clamp(1rem, 7.5vw, 1.5rem);
+  display: grid; grid-template-rows: 2fr auto 3fr; justify-items: center;
+  background: var(--paper); color: var(--ink);
+  font: 400 1rem/1.5 "Roboto", Arial, Helvetica, sans-serif;
+  font-synthesis: none;
+}
+/* The block is as wide as its longest line and everything shares its left edge */
+main { grid-row: 2; width: fit-content; max-width: 100%; }
+
+h1 { margin: 0; font-size: clamp(1.5rem, 12vw, 3.5rem); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; }
+/* Always two lines: what it is, then who it is for. The line break is in the text itself. */
+.tagline { margin: 0.75rem 0 0; font-size: clamp(1rem, 0.5rem + 4.4vw, 1.75rem); line-height: 1.3; letter-spacing: -0.01em; white-space: pre-line; overflow-wrap: break-word; }
+
+ul { margin: 2rem 0 0; padding: 0 0 0 1.0625em; }
+li { text-wrap: balance; }
+li + li { margin-top: 0.5rem; }
+li::marker { color: var(--quiet); }
+
+.action { margin: 2.25rem 0 0; }
+/* The one action on the page, as a button. Its label sits on the same edge as the list text. */
+a { display: inline-block; padding: calc(0.75rem - 1px) calc(1.0625rem - 1px); border: 1px solid transparent; border-radius: 0.375rem; background: var(--link); color: var(--paper); font-weight: 500; text-decoration: none; }
+a:visited { color: var(--paper); }
+a:hover { background: var(--link-hover); }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+
+/* On paper the button fill does not print, so the link prints as plain underlined text */
+@media print { a { background: none; color: inherit; text-decoration: underline; } }
+
+/* Small phones: the long bullet wraps, and the block still hugs its text */
+@media (max-width: 22.2rem) { li { max-width: 13.3em; } }
+
+/* Short screens, such as a phone held sideways */
+@media (max-height: 28rem) {
+  body { padding-block: 1rem; }
+  h1 { font-size: clamp(1.5rem, 12vw, 2.5rem); }
+  .tagline { font-size: clamp(1rem, 0.5rem + 4.4vw, 1.25rem); }
+  ul { margin-top: 1.25rem; }
+  .action { margin-top: 1rem; }
+  a { padding-block: calc(0.625rem - 1px); }
+}
+</style>
 </head>
 <body>
 
+<main>
 <h1>AI Anonymous</h1>
-<p>A peer support community for AI practitioners.</p>
+<p class="tagline">A support community&#10;for AI&nbsp;practitioners.</p>
 
-<h2>What We Do</h2>
 <ul>
 <li>Share experiences building AI</li>
-<li>Discuss ethical challenges honestly</li>
+<li>Discuss challenges honestly</li>
 <li>Support each other through rapid change</li>
 </ul>
 
-<h2>Next Meeting</h2>
-<p><a href="https://luma.com/aianonymous">See upcoming events</a></p>
-
-<hr>
-<footer>
-<p>AI Anonymous &copy; 2026</p>
-</footer>
+<p class="action"><a href="https://luma.com/aianonymous">See upcoming events</a></p>
+</main>
 
 </body>
 </html>
